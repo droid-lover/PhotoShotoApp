@@ -7,6 +7,9 @@ We process images in batches, one batch has 100 images, so it works like this:
 - we only keep images which has a valid face.
 - we repeat for next batches. 
 
+Project Demo Video is here 
+https://drive.google.com/file/d/1-CrT2sxSslqwRRxjMoVIoPUhxGdO7dt4/view?usp=drive_link
+
 
 ## This Project is built using :
 * Android, Kotlin
@@ -22,6 +25,8 @@ We process images in batches, one batch has 100 images, so it works like this:
   all setups are ready and Porject can be used as its to enhance and build other feature going forward.
   <br/>&
   We can integrate analytics crashlytics, and scale it futher with implementation of other features. 
+
+
 
 
 
