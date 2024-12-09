@@ -90,4 +90,7 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.splash.screen)
+
+    implementation(libs.coil.compose)
+    implementation(libs.accompanist.permissions)
 }

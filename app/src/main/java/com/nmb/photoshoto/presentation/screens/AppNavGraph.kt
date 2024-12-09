@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.nmb.photoshoto.presentation.screens.home.HomeScreen
+import com.nmb.photoshoto.presentation.screens.onboarding.OnboardingScreen
 
 
 @Composable
@@ -18,9 +19,18 @@ fun AppNavGraph() {
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
-        NavHost (navController, startDestination = Screen.HomeScreen.route) {
-            composable(route = Screen.HomeScreen.route){
+        NavHost(navController, startDestination = Screen.OnboardingScreen.route) {
+            composable(route = Screen.HomeScreen.route) {
                 HomeScreen()
+            }
+            composable(route = Screen.OnboardingScreen.route) {
+                OnboardingScreen(
+                    onPermissionGranted = {
+                        navController.navigate(Screen.HomeScreen.route){
+                            popUpTo(Screen.OnboardingScreen.route) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    })
             }
         }
     }

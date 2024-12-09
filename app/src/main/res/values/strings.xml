@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PhotoShoto</string>
+    <string name="no_images_found">No Images Found</string>
+    <string name="this_app_needs_permission_to_access_your_photos">This app needs permission to access your photos.</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="cancel">Cancel</string>
+    <string name="the_following_permission_s_are_permanently_denied_please_enable_them_in_the_app_settings_to_use_this_feature">The following permission(s) are permanently denied. Please enable them in the app settings to use this feature.</string>
 </resources>
