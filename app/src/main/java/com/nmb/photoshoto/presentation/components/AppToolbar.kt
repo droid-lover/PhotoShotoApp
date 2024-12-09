@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
@@ -23,10 +22,9 @@ fun AppToolbar() {
     Row(
         modifier = Modifier
             .background(primaryColor)
-            .systemBarsPadding()
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(start = 18.dp,end =18.dp,top=8.dp),
+            .padding(top=40.dp, bottom = 20.dp, start = 16.dp, end = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
 

@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nmb.photoshoto.presentation.components.AppToolbar
+import com.nmb.photoshoto.presentation.components.LoadingComponent
 import com.nmb.photoshoto.presentation.components.TextComponent
 import com.nmb.photoshoto.presentation.ui.theme.whiteColor
 
@@ -44,11 +45,7 @@ fun HomeScreen(
                 .padding(innerPadding)
         ) {
             if (state.isLoading) {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .size(60.dp)
-                        .align(Alignment.CenterHorizontally)
-                )
+                LoadingComponent()
             }
             if (state.error.isNotBlank()) {
                 TextComponent(
@@ -62,11 +59,15 @@ fun HomeScreen(
 
             viewModel.state.value.images?.also {
                 if (it.size > 0) {
-                    GalleryComponent(images = it)
+                    GalleryComponent(images = it.toList())
                 } else {
                     EmptyScreen()
                 }
             }
+
+
+
+
         }
     }
 }

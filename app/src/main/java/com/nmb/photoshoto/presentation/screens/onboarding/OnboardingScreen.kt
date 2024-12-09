@@ -26,7 +26,7 @@ import com.nmb.utilities.logging.AppLogger
 fun OnboardingScreen(
     onPermissionGranted: () -> Unit,
     viewmodel: OnboardingViewModel = hiltViewModel()
-) {
+)  {
 
     val context = LocalContext.current
 
@@ -76,6 +76,8 @@ fun OnboardingScreen(
             onDismiss = { viewmodel.showSettingsDialog = false }
         )
     }
+
+
 }
 
 

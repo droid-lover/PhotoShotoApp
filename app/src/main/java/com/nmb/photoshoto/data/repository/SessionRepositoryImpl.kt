@@ -1,8 +1,10 @@
 package com.nmb.photoshoto.data.repository
 
 import android.annotation.SuppressLint
+import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
+import android.net.Uri
 import android.provider.MediaStore
 import com.nmb.photoshoto.domain.repository.IGalleryRepository
 import com.nmb.utilities.logging.AppLogger
@@ -16,15 +18,13 @@ class GalleryRepositoryImpl @Inject constructor(
 ) : IGalleryRepository {
 
     @SuppressLint("Recycle")
-    override suspend fun getImages(): MutableList<String>? {
-        val images = mutableListOf<String>()
+    override suspend fun getImages(): MutableList<Uri>? {
+        val images = mutableListOf<Uri>()
         return withContext(Dispatchers.IO) {
             val loadingImages = async {
-
                 val columns = arrayOf(
-                    MediaStore.Images.Media.DATA,
                     MediaStore.Images.Media._ID
-                )
+                ) // Only need the _ID column
 
                 val orderBy = MediaStore.Images.Media.DATE_TAKEN
 
@@ -36,18 +36,22 @@ class GalleryRepositoryImpl @Inject constructor(
                     "$orderBy DESC"
                 )
 
-                if(imageCursor == null) return@async
+                if (imageCursor == null) return@async
 
                 imageCursor.moveToFirst()
 
                 while (!imageCursor.isAfterLast) {
-                    val column = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA)
-                    images.add(imageCursor.getString(column))
+                    val id = imageCursor.getLong(imageCursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID))
+                    val contentUri: Uri = ContentUris.withAppendedId(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        id
+                    )
+                    images.add(contentUri)
                     imageCursor.moveToNext()
                 }
             }
             loadingImages.await()
-            if (images.size>0) {
+            if (images.size > 0) {
                 AppLogger.d(message = "Some Images read successfully")
             } else {
                 AppLogger.d(message = "No Images found")
@@ -56,5 +60,4 @@ class GalleryRepositoryImpl @Inject constructor(
             return@withContext images
         }
     }
-
 }

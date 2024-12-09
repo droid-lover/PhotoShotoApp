@@ -1,5 +1,6 @@
 package com.nmb.photoshoto.domain.usecase
 
+import android.net.Uri
 import com.nmb.photoshoto.domain.repository.IGalleryRepository
 import com.nmb.utilities.Resource
 
@@ -11,7 +12,7 @@ class GetImagesUseCase @Inject constructor(
     private val iGalleryRepository: IGalleryRepository
 ) {
 
-    operator fun invoke(): Flow<Resource<MutableList<String>>> = flow {
+    operator fun invoke(): Flow<Resource<MutableList<Uri>>> = flow {
         try {
             emit(Resource.Loading())
             val sessionDetail = iGalleryRepository.getImages()

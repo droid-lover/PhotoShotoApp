@@ -93,4 +93,5 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(libs.accompanist.permissions)
+    implementation(libs.face.detection)
 }
